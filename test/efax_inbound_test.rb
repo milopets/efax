@@ -15,19 +15,20 @@ module EFaxInboundTest
       response = efax_inbound_post(:barcodes => %w[EFAXTEST1A EFAXTEST2A EFAXTEST3A EFAXTEST4A EFAXTEST5A])
 
       assert_equal efax_inbound_post_file_contents, response.encoded_file_contents
-      assert_equal :pdf,          response.file_type
-      assert_equal '8587123600',  response.sender_fax_number
-      assert_equal '8587123600',  response.ani
-      assert_equal '1234567890',  response.account_id
-      assert_equal 'SampleOut',   response.fax_name
-      assert_equal '8587123600',  response.csid
-      assert_equal 0,             response.status
-      assert_equal 12345678,      response.mcfid
-      assert_equal 5,             response.page_count
-      assert_equal 'New Inbound', response.request_type
+      assert_equal :pdf,            response.file_type
+      assert_equal '8587123600',    response.sender_fax_number
+      assert_equal '8587123600',    response.ani
+      assert_equal '1234567890',    response.account_id
+      assert_equal 'SampleOut',     response.fax_name
+      assert_equal '+11234567890',  response.number_dialed
+      assert_equal '8587123600',    response.csid
+      assert_equal 0,               response.status
+      assert_equal 12345678,        response.mcfid
+      assert_equal 5,               response.page_count
+      assert_equal 'New Inbound',   response.request_type
       assert_equal %w[EFAXTEST1A EFAXTEST2A EFAXTEST3A EFAXTEST4A EFAXTEST5A],
-                                  response.barcodes
-      assert_equal %w[1 2 3 4 5], response.barcode_pages
+                                    response.barcodes
+      assert_equal %w[1 2 3 4 5],   response.barcode_pages
       assert_not_nil response.file_contents
       assert_not_nil response.file
       assert_respond_to response.file, :read
