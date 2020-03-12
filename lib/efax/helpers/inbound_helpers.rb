@@ -22,6 +22,7 @@ module EFax
           :page_count            => 5,
           :csid                  => "8587123600",
           :ani                   => "8587123600",
+          :number_dialed         => "+11234567890",
           :status                => 0,
           :mcfid                 => 12345678,
           :encoded_file_contents => efax_inbound_post_file_contents }
@@ -52,6 +53,7 @@ module EFax
               <ANI>#{options[:ani]}</ANI>
               <Status>#{options[:status]}</Status>
               <MCFID>#{options[:mcfid]}</MCFID>
+              <NumberDialed>#{options[:number_dialed]}</NumberDialed>
               <UserFieldControl>
                 <UserFieldsRead>2</UserFieldsRead>
                 <UserFields>

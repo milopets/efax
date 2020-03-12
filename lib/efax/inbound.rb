@@ -22,7 +22,8 @@ module EFax
                 :date_received,
                 :request_date,
                 :barcodes,
-                :barcode_pages
+                :barcode_pages,
+                :number_dialed
 
     alias_method :sender_fax_number, :ani
 
@@ -38,6 +39,7 @@ module EFax
       @mcfid         = doc.at(:mcfid).inner_text.to_i
       @page_count    = doc.at(:pagecount).inner_text.to_i
       @request_type  = doc.at(:requesttype).inner_text
+      @number_dialed = doc.at(:numberdialed).inner_text
       @date_received = datetime_to_time(DateTime.strptime("#{doc.at(:datereceived).inner_text} -08:00", "%m/%d/%Y %H:%M:%S %z"))
       @request_date  = datetime_to_time(DateTime.strptime("#{doc.at(:requestdate).inner_text} -08:00", "%m/%d/%Y %H:%M:%S %z"))
       @barcodes      = doc.search("//barcode/key").map { |key| key.inner_html }
